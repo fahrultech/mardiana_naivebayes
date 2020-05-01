@@ -39,7 +39,10 @@ class Gejala_model extends CI_Model
         }
     }
     function getAll(){
-        return $this->db->get($this->table)->result();
+        $this->db->select("id,gejala");
+        $this->db->from($this->table);
+        $query = $this->db->get();
+        return $query->result();
     }
     function get_datatables(){
         $this->_get_datatables_query();

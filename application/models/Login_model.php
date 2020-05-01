@@ -8,6 +8,7 @@ class Login_model extends CI_Model{
         $this->db->where('password', $password);
         return $this->db->get('users');
     }
+    
     function getLoginData($user, $pass){
         $u = $user;
         $p = md5($pass);
