@@ -2,15 +2,14 @@
 if (!defined('BASEPATH'))
 exit('No direct script access allowed');
 
-class Gejala_model extends CI_Model
-{
-    public $table = 'gejala';
+class User_model extends CI_Model{
+    public $table = 'users';
     public $id = 'id';
     public $order = array('id' => 'asc');
-    public $columnOrder = array('gejala,ringan,sedang,berat');
-    public $columnSearch = array('tipekecanduan');
-
-    // Konstructor
+    public $columnOrder = array('username');
+    public $columnSearch = array('username');
+    
+    //Constructor
     function __construct(){
         parent::__construct();
     }
@@ -38,12 +37,6 @@ class Gejala_model extends CI_Model
             $this->db->order_by(key($order), $order[key($order)]);
         }
     }
-    function getAll(){
-        $this->db->select("id,gejala");
-        $this->db->from($this->table);
-        $query = $this->db->get();
-        return $query->result();
-    }
     function get_datatables(){
         $this->_get_datatables_query();
         if($_POST['length'] != -1)
@@ -51,7 +44,6 @@ class Gejala_model extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
-    
     function count_filtered(){
         $this->_get_datatables_query();
         $query = $this->db->get();
@@ -65,11 +57,27 @@ class Gejala_model extends CI_Model
         $this->db->insert($this->table, $data);
         return $this->db->insert_id();
     }
-    function getById($id){
+    function getUserName($id){
+        $this->db->select('username');
         $this->db->from($this->table);
-        $this->db->where($this->id,$id);
+        $this->db->where('id',$id);
         $query = $this->db->get();
         return $query->row();
+    }
+    function getUser($id){
+        $this->db->select('id,username,email');
+        $this->db->from($this->table);
+        $this->db->where('id',$id);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    function confirmUser($id, $password){
+        $this->db->where("id",$id);
+        $this->db->where("password",md5($password));
+        $res = $this->db->get($this->table);
+
+        return count($res->result());
     }
     function update($id, $data){
         $this->db->update($this->table, $data, $id);
@@ -80,6 +88,5 @@ class Gejala_model extends CI_Model
         $this->db->where($this->id, $id);
         $this->db->delete($this->table);
     }
-
-
+    
 }

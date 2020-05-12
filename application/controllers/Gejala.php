@@ -24,9 +24,6 @@ class Gejala extends CI_Controller {
            $row = array();
            $row[] = $no;
            $row[] = $li->gejala;
-           $row[] = $li->ringan;
-           $row[] = $li->sedang;
-           $row[] = $li->berat;
            $row[] = '<div style="text-align:center">
                       <button onClick="editGejala('."'$li->id'".')" class="btn btn-xs btn-warning"><i class="fa fa-pencil"></i></button>
                       <button class="btn btn-xs btn-danger" onClick="hapusGejala('."'$li->id'".')"><i class="fa fa-trash"></i></button>
@@ -34,7 +31,7 @@ class Gejala extends CI_Controller {
            $data[] = $row;
         }
         $output = array("draw" => $_POST['draw'],
-          //"recordsTotal" => $this->kecamatan->count_all(),
+          "recordsTotal" => $this->gejala->count_all(),
           "recordsFiltered" => $this->gejala->count_filtered(),
           "data" => $data
         );
@@ -43,9 +40,6 @@ class Gejala extends CI_Controller {
     function tambahGejala(){
       $data = array(
         'gejala' => $this->input->post('gejala'),
-        'ringan' => $this->input->post('ringan'),
-        'sedang' => $this->input->post('sedang'),
-        'berat' => $this->input->post('berat')
       );
       $insert = $this->Gejala_model->insert($data);
       echo json_encode(array("status" => TRUE));
@@ -61,9 +55,6 @@ class Gejala extends CI_Controller {
     function updateGejala(){
       $data = array(
         'gejala' => $this->input->post('gejala'),
-        'ringan' => $this->input->post('ringan'),
-        'sedang' => $this->input->post('sedang'),
-        'berat' => $this->input->post('berat')
       );
       $this->Gejala_model->update(array('id' => $this->input->post('idgejala')),$data);
       echo json_encode(array("status" => TRUE));

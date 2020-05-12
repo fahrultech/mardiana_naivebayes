@@ -28,9 +28,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                    <tr>
                     <th width="80px">No</th>
                     <th>Gejala</th>
-                    <th>Ringan</th>
-                    <th>Sedang</th>
-                    <th>Berat</th>
                     <th width="200px">Action</th>
                    </tr>
                   </thead>
@@ -56,33 +53,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                        <label for="" class="col-4 col-form-label">Gejala</label>
                        <div class="col-8">
                          <input name="gejala" type="text" class="form-control">
-                       </div>
-                     </div>
-                     <div class="form-group row">
-                       <label for="" class="col-4 col-form-label">Ringan</label>
-                       <div class="col-8">
-                         <select name="ringan" id="" class="form-control">
-                            <option value="Y">Y</option>
-                            <option value="T">T</option>
-                         </select>
-                       </div>
-                     </div>
-                     <div class="form-group row">
-                       <label for="" class="col-4 col-form-label">Sedang</label>
-                       <div class="col-8">
-                         <select name="sedang" id="" class="form-control">
-                            <option value="Y">Y</option>
-                            <option value="T">T</option>
-                         </select>
-                       </div>
-                     </div>
-                     <div class="form-group row">
-                       <label for="" class="col-4 col-form-label">Berat</label>
-                       <div class="col-8">
-                         <select name="berat" id="" class="form-control">
-                            <option value="Y">Y</option>
-                            <option value="T">T</option>
-                         </select>
                        </div>
                      </div>
                    </form>
@@ -111,12 +81,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
        type: "GET",
        dataType : "JSON",
        success : function(data){
-         console.log(data);
          $('[name="idgejala"]').val(data.id);
          $('[name="gejala"]').val(data.gejala);
-         $('[name="ringan"]').val(data.ringan);
-         $('[name="sedang"]').val(data.sedang);
-         $('[name="berat"]').val(data.berat);
          $('#modalGejala').modal('show');
        }
      })
@@ -162,7 +128,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
        "order" : [],
        "ajax" : {
          "url" : "<?php echo site_url('gejala/getAllData');?>",
-         "type" : "POST"
+         "type" : "POST",
        },
        "columnDefs": [{
          "targets": [ -1 ],

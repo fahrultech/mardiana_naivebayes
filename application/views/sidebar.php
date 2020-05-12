@@ -26,17 +26,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </ul>
                 </li>
                 <li>
-                    <a href="javascript: void(0);"><i class="fi-bar-graph-2"></i><span> Aturan </span> <span class="menu-arrow"></span></a>
-                    <ul class="nav-second-level" aria-expanded="false">
-                        <li><a href="<?php echo base_url('aturan/probabilitastipe');?>">Probabilitas Tipe</a></li>
-                        <li><a href="<?php echo base_url('aturan/probabilitasgejala');?>">Probabilitas Gejala</a></li>
-                    </ul>
-                </li>
-                <li>
                     <a href="<?php echo base_url('pengguna');?>"><i class="fi-head"></i><span> Pengguna </span></a>
-                </li>
-                <li>
-                    <a href="<?php echo base_url('hasil');?>"><i class="fi-disc"></i> <span> Hasil </span></a>
                 </li>
                 <li>
                     <a href="<?php echo base_url('admin/logout');?>"><i class="fa fa-power-off"></i> <span> Keluar </span></a>
@@ -48,4 +38,4 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </div>
     <!-- Sidebar -left -->
 </div>
-            <!-- Left Sidebar End -->
+<!-- Left Sidebar End -->

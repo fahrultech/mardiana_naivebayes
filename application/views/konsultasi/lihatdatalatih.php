@@ -8,11 +8,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box">
-                        <h4 class="page-title float-left">Data Latih Responden</h4>
+                        <h4 class="page-title float-left">Data Uji Responden</h4>
                         <ol class="breadcrumb float-right">
                             <li class="breadcrumb-item"><a href="#">Naive Bayes</a></li>
                             <li class="breadcrumb-item"><a href="#">Konsultasi</a></li>
-                            <li class="breadcrumb-item active">Data Latih</li>
+                            <li class="breadcrumb-item active">Data Uji</li>
                         </ol>
                         <div class="clearfix"></div>
                     </div>
@@ -21,44 +21,38 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="row">
               <div class="col-12">
                 <div class="card-box">
-                <button onClick="tambahGejala()" type="button" class="btn btn-sm btn-success mb-3">
-                    <i class="mdi mdi-plus-circle-outline"></i>Tambah
-                </button>
-                <table class="table table-bordered table-striped table-condensed" id="tabelDataLatih">
+                <h3 style="margin-bottom:20px">Tipe Kecanduan <?php echo $tipe;?></h3>
+                <table class="table table-bordered table-striped table-condensed" id="tabelLihatDataLatih">
                   <thead>
                    <tr>
                     <th width="80px">No</th>
-                    <th>Pernyataan</th>
-                    <th width="200px">Action</th>
+                    <th>Gejala</th>
+                    <th>Bobot Jawaban</th>
                    </tr>
                   </thead>
+                  <tbody>
+                     <?php
+                         foreach($datatabel as $dt){
+                           ?>
+                           <tr>
+                             <td><?php echo $dt[0]; ?></td>
+                             <td><?php echo $dt[1]; ?></td>
+                             <td><?php echo $dt[2]; ?></td>
+                           </tr><?php
+                         }
+                     ?>
+                  </tbody>
                 </table>
                 </div>
               </div>
             </div>
-           
             <!-- end row -->
         </div> <!-- container -->
     </div> <!-- content -->
 <?php $this->load->view('footer'); ?>
-<script type="text/javascript">
-   let table, save_method, url;
-   lihatDataLatih = id => {
-   }
-   $(document).ready(function(){
-     table = $('#tabelDataLatih').DataTable({
-       "processing" : true,
-       "serverSide" : true,
-       "order" : [],
-       "ajax" : {
-         "url" : "<?php echo site_url('datalatih/getAllData');?>",
-         "type" : "POST"
-       },
-       "columnDefs": [{
-         "targets": [ -1 ],
-         "orderable" : false
-       }]
-     })
+<script>
+    let table;
+    $(document).ready(function(){
+     table = $('#tabelLihatDataLatih').DataTable();
    })
 </script>
-
