@@ -120,10 +120,10 @@ class Naive {
                           "sedang" => $pSedang * $pGejalaSedang,
                           "berat" => $pBerat * $pGejalaBerat);
            
-            if($prob["ringan"] > $prob["sedang"] && $prob["ringan"] > $prob["berat"]) {$this->res = "Gejala Ringan";$this->probres=$prob["ringan"];}
-            else if($prob["sedang"] > $prob["berat"] && $prob["sedang"] > $prob["ringan"]) {$this->res = "Gejala Sedang";$this->probres=$prob["sedang"];}
-            else if($prob["berat"] > $prob["sedang"] && $prob["berat"] > $prob["ringan"]) {$this->res = "Gejala Berat";$this->probres=$prob["berat"];}
-             return array($this->res,round($this->probres,3));
+            if($prob["ringan"] > $prob["sedang"] && $prob["ringan"] > $prob["berat"]) {$this->res = 1 ;$this->probres=$prob["ringan"];}
+            else if($prob["sedang"] > $prob["berat"] && $prob["sedang"] > $prob["ringan"]) {$this->res = 2 ;$this->probres=$prob["sedang"];}
+            else if($prob["berat"] > $prob["sedang"] && $prob["berat"] > $prob["ringan"]) {$this->res = 3 ;$this->probres=$prob["berat"];}
+            return array($this->res,strval(sprintf("%1.4e",$this->probres)));
         }
        
         private function checkZeroProbability($data = array(),$stat){

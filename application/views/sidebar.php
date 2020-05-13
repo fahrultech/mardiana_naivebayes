@@ -21,8 +21,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <li>
                     <a href="javascript: void(0);"><i class="fi-box"></i><span> Konsultasi </span> <span class="menu-arrow"></span></a>
                     <ul class="nav-second-level" aria-expanded="false">
-                        <li><a href="<?php echo base_url('konsultasi/datalatih');?>">Data Latih</a></li>
-                        <li><a href="<?php echo base_url('konsultasi/datauji');?>">Data Uji</a></li>
+                        <li><a href="<?php echo base_url('datalatih');?>">Data Latih</a></li>
+                        <li><a href="<?php echo base_url('datauji');?>">Data Uji</a></li>
                     </ul>
                 </li>
                 <li>

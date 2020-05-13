@@ -21,57 +21,39 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="row">
               <div class="col-12">
                 <div class="card-box">
-                <table class="table table-bordered table-striped table-condensed" id="tabelDataUji">
+                <h5 style="margin-bottom:20px">Tipe Kecanduan : <?php echo $ser->idtipekecanduan; ?></h5>
+                <h5 style="margin-bottom:20px">Nama : <?php echo $ser->username; ?></h5>
+                <table class="table table-bordered table-striped table-condensed" id="tabelLihatDataLatih">
                   <thead>
                    <tr>
                     <th width="80px">No</th>
-                    <th>Username</th>
-                    <th>Tipe Kecanduan</th>
-                    <th>Tanggal</th>
-                    <th width="200px">Action</th>
+                    <th>Gejala</th>
+                    <th>Bobot Jawaban</th>
                    </tr>
                   </thead>
+                  <tbody>
+                     <?php
+                         foreach($datatabel as $dt){
+                           ?>
+                           <tr>
+                             <td><?php echo $dt[0]; ?></td>
+                             <td><?php echo $dt[1]; ?></td>
+                             <td><?php echo $dt[2]; ?></td>
+                           </tr><?php
+                         }
+                     ?>
+                  </tbody>
                 </table>
                 </div>
               </div>
             </div>
-           
             <!-- end row -->
         </div> <!-- container -->
     </div> <!-- content -->
 <?php $this->load->view('footer'); ?>
-<script type="text/javascript">
-   let table, save_method, url;
-   lihatDataLatih = id => {
-   }
-   $(document).ready(function(){
-     table = $('#tabelDataUji').DataTable({
-       "processing" : true,
-       "serverSide" : true,
-       "order" : [],
-       "ajax" : {
-         "url" : "<?php echo base_url('datauji/getAllData');?>",
-         "type" : "POST"
-       },
-       "columnDefs": [{
-         "targets": [ -1 ],
-         "orderable" : false
-       }]
-     })
+<script>
+    let table;
+    $(document).ready(function(){
+     table = $('#tabelLihatDataLatih').DataTable();
    })
-   hapusDataUji = id => {
-    if(confirm("Apakah Anda Yakin Akan Menghapus Data Ini")){
-        $.ajax({
-        url : `datauji/hapusDataUji/${id}`,
-        type: "POST",
-        dataType: "JSON",
-        success : function(data){
-            if(data.status){
-                table.ajax.reload();
-            }
-        }
-      })
-    }
-   }
 </script>
-
