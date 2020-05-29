@@ -10,6 +10,7 @@ class Api extends CI_Controller{
         $this->load->model('DataLatih_model');
         $this->load->model('DataUji_model');
         $this->load->model('TipeKecanduan_model');
+        $this->load->model('Hasil_model','hasil');
         $this->load->library('naive');
     }
 
@@ -129,11 +130,11 @@ class Api extends CI_Controller{
             "id_gejala_24" => $values[23],
             "id_gejala_25" => $values[24],
             "id_gejala_26" => $values[25],
-            "bobot_jawaban" => $hasil[1]
+            "bobot_jawaban" => array_sum($values)
         );
         $this->DataUji_model->updateDetail($id[0]->id, $detaildata);
     }
-    $resultForMobile = array("Gejala " . $tipekecanduan[$hasil[0]-1]->tipekecanduan,$hasil[1]);
+    $resultForMobile = array("Gejala " . $tipekecanduan[$hasil[0]-1]->tipekecanduan,array_sum($values));
     echo '{"name": '.json_encode($name->username).',"results" : '.json_encode($resultForMobile).'}';
     }
 
@@ -143,7 +144,21 @@ class Api extends CI_Controller{
         $query = $this->User_model->getUser($id);
         echo '{"results" : '.json_encode($query).'}';
     }
+    function gethasil(){
+        $jsonArray = json_decode(file_get_contents('php://input'),true); 
+        $id = $jsonArray["id"];
+        $res = $this->hasil->getHasil($id)[0];
+        echo '{"gejala": '.json_encode("Gejala ".$res->tipekecanduan).',
+                "score" : '.json_encode($res->bobot_jawaban).',
+                "nama" :'.json_encode($res->username).'}';
 
+    }
+    function gantipassword(){
+        $username = $this->input->post("username");
+        $passwordbaru = $this->input->post("passwordbaru");
+        $this->User_model->updatePassword($username,$passwordbaru);
+         echo '{"message" : "Berhasil"}';
+    }
     function updateprofil(){
         $username = $this->input->post("username");
         $id = $this->input->post("id");

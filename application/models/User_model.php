@@ -79,6 +79,11 @@ class User_model extends CI_Model{
 
         return count($res->result());
     }
+    function updatePassword($username, $password){
+        $this->db->set('password',md5($password));
+        $this->db->where('username',$username);
+        $this->db->update($this->table);
+    }
     function update($id, $data){
         $this->db->update($this->table, $data, $id);
         return $this->db->affected_rows();
