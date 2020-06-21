@@ -10,7 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <ul class="metismenu" id="side-menu">
                 <li class="menu-title">Menu</li>
                 <li>
-                    <a href="<?php echo base_url('tingkatkecanduan');?>">
+                    <a href="<?php echo base_url('Tingkatkecanduan');?>">
                         <i class="fi-air-play"></i><span> Tipe Kecanduan </span>
                     </a>
                 </li>
@@ -21,8 +21,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <li>
                     <a href="javascript: void(0);"><i class="fi-box"></i><span> Konsultasi </span> <span class="menu-arrow"></span></a>
                     <ul class="nav-second-level" aria-expanded="false">
-                        <li><a href="<?php echo base_url('datalatih');?>">Data Latih</a></li>
-                        <li><a href="<?php echo base_url('datauji');?>">Data Uji</a></li>
+                        <li><a href="<?php echo base_url('Datalatih');?>">Data Latih</a></li>
+                        <li><a href="<?php echo base_url('Datauji');?>">Data Uji</a></li>
                     </ul>
                 </li>
                 <li>
